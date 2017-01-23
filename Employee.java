@@ -5,13 +5,16 @@ public class Employee {
 	String type;
 	String pmethod;
 	String pschedule;
+	String dweek;
 	float salary;
 	float commission;
 	float sales;
-	float charge;
+	float tax;
+	float adtax;
 	int id;
 	int workedh;
 	int extrah;
 	int entryt;
+	int dmonth;
 	boolean union;
 }
