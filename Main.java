@@ -23,7 +23,26 @@ public class Main{
 		emp.sindicato = emporiginal.sindicato;
 	}
 
-	public static void addEmpregado(Empregado[] emps, Scanner entrada, Empregado eaux){
+	public static void imprimirAgenda(Agenda agenda){
+		int j;
+		System.out.println("Dias do mês disponíveis:");
+		for(int i = 0; i < 31; i++){
+			if(agenda.d_mes[i] == 1){
+				j = i + 1;
+				System.out.println(j);
+			}
+		}
+		System.out.println("Dias da semana disponíveis: (1 - segunda, 2 - terça ...)");
+		for(int i = 0; i < 5; i++){
+			if(agenda.d_semana[i] == 1){
+				j = i + 1;
+				System.out.println(j);
+			}
+		}
+	}
+	
+	public static void addEmpregado(Empregado[] emps, Scanner entrada, Empregado eaux, Agenda agenda){
+		int dia;
 		Empregado emp = new Empregado();
 		String aux;
 		
@@ -37,12 +56,26 @@ public class Main{
 		emp.agenda_pag = entrada.nextLine();
 		if(emp.agenda_pag.equals("mensalmente") || emp.agenda_pag.equals("Mensalmente")){
 			System.out.println("Digite o dia do mês:");
-			emp.d_mes = entrada.nextInt();
+			dia = entrada.nextInt();
+			if(agenda.d_mes[dia-1] == 1){
+				emp.d_mes = dia-1;
+			}
+			else{
+				System.out.println("Dia não disponível. Por favor tente novamente.");
+				return;
+			}
 			entrada.nextLine();
 		}
 		else{
 			System.out.println("Digite o dia da semana: (1 - segunda, 2 - terça ...)");
-			emp.d_semana = entrada.nextInt();
+			dia = entrada.nextInt();
+			if(agenda.d_semana[dia-1] == 1){
+				emp.d_semana = dia-1;
+			}
+			else{
+				System.out.println("Dia não disponível. Por favor tente novamente.");
+				return;
+			}
 		}
 		System.out.println("Digite o salário:");
 		emp.salario = entrada.nextFloat();
@@ -345,38 +378,21 @@ public class Main{
 		}
 	}
 	
-	public static void novaAgenda(Empregado[] emps, Scanner entrada){
-		int id, aux1;
+	public static void novaAgenda(Scanner entrada, Agenda agenda){
+		int dia;
 		String aux;
-		
-		System.out.println("Digite o id do empregado:");
-		id = entrada.nextInt();
-		entrada.nextLine();
-		if(emps[id] == null){
-			System.out.println("Id incorreto. Por favor, tente novamente");
-			return;
-		}
 		
 		System.out.println("Qual a frequência do pagamento? (mensal, semanal)");
 		aux = entrada.nextLine();
 		if(aux.equals("mensal") || aux.equals("Mensal")){
-			emps[id].agenda_pag = "mensalmente";
 			System.out.println("Em que dia o funcionário deverá ser pago?");
-			emps[id].d_mes = entrada.nextInt();
+			dia = entrada.nextInt();
+			agenda.d_mes[dia-1] = 1;
 		}
 		else{
-			System.out.println("A cada quantas semanas o funcionário deverá ser pago?");
-			aux1 = entrada.nextInt();
-			if(aux1 == 1){
-				emps[id].agenda_pag = "semanalmente";
-				System.out.println("Em que dia da semana o funcionário deverá ser pago? (1 - segunda, 2 - terça ...");
-				emps[id].d_semana = entrada.nextInt();
-			}
-			else{
-				emps[id].agenda_pag = "bisemanalmente";
-				System.out.println("Em que dia da semana o funcionário deverá ser pago? (1 - segunda, 2 - terça ...");
-				emps[id].d_semana = entrada.nextInt();
-			}
+			System.out.println("Em que dia da semana o funcionário deverá ser pago? (1 - segunda, 2 - terça ...");
+			dia = entrada.nextInt();
+			agenda.d_semana[dia-1] = 1;
 		}
 	}
 	
@@ -500,6 +516,7 @@ public class Main{
 	public static void main(String[] args){
 		Empregado[] emps = new Empregado[20];
 		Empregado emp_aux;
+		Agenda novagenda = new Agenda();
 		int func, a = 0;
 		Scanner entrada = new Scanner(System.in);
 		
@@ -514,9 +531,10 @@ public class Main{
 			System.out.println("5. Alterar as informações de um empregado");
 			System.out.println("6. Rodar folha de pagamento");
 			System.out.println("7. Criar uma nova agenda de pagamento");
-			System.out.println("8. Consultar o id de um funcionário");
-			System.out.println("9. Desfazer");
-			System.out.println("10. Refazer");
+			System.out.println("8. Imprimir a atual agenda de pagamento");
+			System.out.println("9. Consultar o id de um funcionário");
+			System.out.println("10. Desfazer");
+			System.out.println("11. Refazer");
 						
 			func = entrada.nextInt();
 			entrada.nextLine();
@@ -524,7 +542,7 @@ public class Main{
 			switch(func){
 				case 1:
 					a = func;
-					addEmpregado(emps, entrada, emp_aux);
+					addEmpregado(emps, entrada, emp_aux, novagenda);
 					break;
 					
 				case 2:
@@ -553,10 +571,14 @@ public class Main{
 					break;
 					
 				case 7:
-					novaAgenda(emps, entrada);
+					novaAgenda(entrada, novagenda);
 					break;
 					
 				case 8:
+					imprimirAgenda(novagenda);
+					break;
+					
+				case 9:
 					int id;
 					id = consultarId(emps, entrada);
 					if(id < 20){
@@ -567,11 +589,11 @@ public class Main{
 					}
 					break;
 					
-				case 9:
+				case 10:
 					desfazer(emps, a, emp_aux);
 					break;
 					
-				case 10:
+				case 11:
 					refazer(emps, a, emp_aux);
 					break;
 					
