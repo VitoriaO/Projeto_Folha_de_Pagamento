@@ -29,7 +29,7 @@ public class Empregado {
 		this.vendas = 0;
 		this.taxa = 0;
 		this.taxa_ad = 0;
-		this.id = 0;
+		this.id = -1;
 		this.h_trab = 0;
 		this.h_extra = 0;
 		this.h_entrada = 0;
