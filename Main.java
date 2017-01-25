@@ -58,7 +58,7 @@ public class Main{
 			System.out.println("Digite o dia do mês:");
 			dia = entrada.nextInt();
 			if(agenda.d_mes[dia-1] == 1){
-				emp.d_mes = dia-1;
+				emp.d_mes = dia;
 			}
 			else{
 				System.out.println("Dia não disponível. Por favor tente novamente.");
@@ -70,7 +70,7 @@ public class Main{
 			System.out.println("Digite o dia da semana: (1 - segunda, 2 - terça ...)");
 			dia = entrada.nextInt();
 			if(agenda.d_semana[dia-1] == 1){
-				emp.d_semana = dia-1;
+				emp.d_semana = dia;
 			}
 			else{
 				System.out.println("Dia não disponível. Por favor tente novamente.");
@@ -369,6 +369,7 @@ public class Main{
 			}
 			if(emps[i].agenda_pag.equals("mensalmente") || emps[i].agenda_pag.equals("mensalmente")){
 				if(emps[i].d_mes == data){
+					System.out.println("entra");
 					pagamento(emps, sal, i);
 				}
 			}
