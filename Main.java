@@ -25,14 +25,14 @@ public class Main{
 
 	public static void imprimirAgenda(Agenda agenda){
 		int j;
-		System.out.println("Dias do mês disponíveis:");
+		System.out.println("Dias do mÃªs disponÃ­veis:");
 		for(int i = 0; i < 31; i++){
 			if(agenda.d_mes[i] == 1){
 				j = i + 1;
 				System.out.println(j);
 			}
 		}
-		System.out.println("Dias da semana disponíveis: (1 - segunda, 2 - terça ...)");
+		System.out.println("Dias da semana disponÃ­veis: (1 - segunda, 2 - terÃ§a ...)");
 		for(int i = 0; i < 5; i++){
 			if(agenda.d_semana[i] == 1){
 				j = i + 1;
@@ -48,46 +48,46 @@ public class Main{
 		
 		System.out.println("Digite o nome do empregado:");
 		emp.nome = entrada.nextLine();
-		System.out.println("Digite o endereço:");
+		System.out.println("Digite o endereÃ§o:");
 		emp.endereco = entrada.nextLine();
 		System.out.println("Digite o tipo (horista, assalariado, comissionado):");
 		emp.tipo = entrada.nextLine();
 		System.out.println("Digite a agenda de pagamento: (mensalmente, semanalmente...)");
 		emp.agenda_pag = entrada.nextLine();
 		if(emp.agenda_pag.equals("mensalmente") || emp.agenda_pag.equals("Mensalmente")){
-			System.out.println("Digite o dia do mês:");
+			System.out.println("Digite o dia do mÃªs:");
 			dia = entrada.nextInt();
 			if(agenda.d_mes[dia-1] == 1){
 				emp.d_mes = dia;
 			}
 			else{
-				System.out.println("Dia não disponível. Por favor tente novamente.");
+				System.out.println("Dia nÃ£o disponÃ­vel. Por favor tente novamente.");
 				return;
 			}
 			entrada.nextLine();
 		}
 		else{
-			System.out.println("Digite o dia da semana: (1 - segunda, 2 - terça ...)");
+			System.out.println("Digite o dia da semana: (1 - segunda, 2 - terÃ§a ...)");
 			dia = entrada.nextInt();
 			if(agenda.d_semana[dia-1] == 1){
 				emp.d_semana = dia;
 			}
 			else{
-				System.out.println("Dia não disponível. Por favor tente novamente.");
+				System.out.println("Dia nÃ£o disponÃ­vel. Por favor tente novamente.");
 				return;
 			}
 		}
-		System.out.println("Digite o salário:");
+		System.out.println("Digite o salÃ¡rio:");
 		emp.salario = entrada.nextFloat();
 		entrada.nextLine();
-		System.out.println("Digite o método de pagamento:");
+		System.out.println("Digite o mÃ©todo de pagamento:");
 		emp.metodo_pag = entrada.nextLine();
 		if(emp.tipo.equals("comissionado") || emp.tipo.equals("Comissionado")){
-			System.out.println("Digite a comissão em porcentagem:");
+			System.out.println("Digite a comissÃ£o em porcentagem:");
 			emp.comissao = entrada.nextFloat();
 			entrada.nextLine();
 		}
-		System.out.println("O Empregado faz parte do sindicato? (sim ou não)");
+		System.out.println("O Empregado faz parte do sindicato? (sim ou nÃ£o)");
 		aux = entrada.nextLine();
 		if(aux.equals("sim") || aux.equals("Sim")){
 			emp.sindicato = true;
@@ -144,7 +144,7 @@ public class Main{
 		int id;
 		float venda;
 		
-		System.out.println("Digite o id para o qual a venda será associada:");
+		System.out.println("Digite o id para o qual a venda serÃ¡ associada:");
 		id = entrada.nextInt();
 		if(emps[id] == null){
 			System.out.println("Id incorreto. Por favor, tente novamente");
@@ -176,7 +176,7 @@ public class Main{
 			return;
 		}
 		if(emps[id].sindicato == false){
-			System.out.println("O empregado selecionado não pertence ao sindicato. Tenha certeza de que o id digitado seja o certo e tente novamente");
+			System.out.println("O empregado selecionado nÃ£o pertence ao sindicato. Tenha certeza de que o id digitado seja o certo e tente novamente");
 			return;
 		}
 		
@@ -203,12 +203,12 @@ public class Main{
 		}
 		
 		do{
-			System.out.println("Qual informação você deseja modificar?");
+			System.out.println("Qual informaÃ§Ã£o vocÃª deseja modificar?");
 			System.out.println("1. Nome");
-			System.out.println("2. Endereço");
+			System.out.println("2. EndereÃ§o");
 			System.out.println("3. Tipo");
-			System.out.println("4. Método de pagamento");
-			System.out.println("5. Informações relacionadas ao sindicato");
+			System.out.println("4. MÃ©todo de pagamento");
+			System.out.println("5. InformaÃ§Ãµes relacionadas ao sindicato");
 			opcao = entrada.nextInt();
 			entrada.nextLine();
 			switch(opcao){
@@ -218,7 +218,7 @@ public class Main{
 					break;
 					
 				case 2:
-					System.out.println("Digite o novo endereço:");
+					System.out.println("Digite o novo endereÃ§o:");
 					emps[id].endereco = entrada.nextLine();
 					break;
 					
@@ -228,13 +228,13 @@ public class Main{
 					break;
 					
 				case 4:
-					System.out.println("Digite o novo método de pagamento:");
+					System.out.println("Digite o novo mÃ©todo de pagamento:");
 					emps[id].metodo_pag = entrada.nextLine();
 					break;
 					
 				case 5:
-					System.out.println("O que você deseja modificar?");
-					System.out.println("1 - O empregado é/não é parte do sindicato");
+					System.out.println("O que vocÃª deseja modificar?");
+					System.out.println("1 - O empregado Ã©/nÃ£o Ã© parte do sindicato");
 					System.out.println("2 - Adicionar taxas");
 					
 					int escolha = entrada.nextInt();
@@ -254,15 +254,15 @@ public class Main{
 							addTaxas(emps, entrada);
 							break;
 						default:
-							System.out.println("Opção Inválida. Por favor tente novamente.");
+							System.out.println("OpÃ§Ã£o InvÃ¡lida. Por favor tente novamente.");
 					}
 					break;
 					
 				default:
-					System.out.println("Opção Inválida. Por favor tente novamente.");
+					System.out.println("OpÃ§Ã£o InvÃ¡lida. Por favor tente novamente.");
 			}
 			
-			System.out.println("Deseja alterar outra informação? (1 - Sim/0 - Não)");
+			System.out.println("Deseja alterar outra informaÃ§Ã£o? (1 - Sim/0 - NÃ£o)");
 			opcao = entrada.nextInt();
 		}while(opcao != 0);
 		entrada.nextLine();
@@ -304,22 +304,22 @@ public class Main{
 	public static void pagamento(Empregado[] emps, float salario, int i){
 		switch(emps[i].metodo_pag){
 			case "Cheque pelos correios":
-				System.out.println("O empregado " + emps[i].nome + " está recebendo " + salario + " através de um cheque entregue pelos correios");
+				System.out.println("O empregado " + emps[i].nome + " estÃ¡ recebendo " + salario + " atravÃ©s de um cheque entregue pelos correios");
 				break;
 			case "cheque pelos correios":
-				System.out.println("O empregado " + emps[i].nome + " está recebendo " + salario + " através de um cheque entregue pelos correios");
+				System.out.println("O empregado " + emps[i].nome + " estÃ¡ recebendo " + salario + " atravÃ©s de um cheque entregue pelos correios");
 				break;
-			case "Cheque em mãos":
-				System.out.println("O empregado " + emps[i].nome + " está recebendo " + salario + " em cheque entregue em mãos");
+			case "Cheque em mÃ£os":
+				System.out.println("O empregado " + emps[i].nome + " estÃ¡ recebendo " + salario + " em cheque entregue em mÃ£os");
 				break;
-			case "cheque em mãos":
-				System.out.println("O empregado " + emps[i].nome + " está recebendo " + salario + " em cheque entregue em mãos");
+			case "cheque em mÃ£os":
+				System.out.println("O empregado " + emps[i].nome + " estÃ¡ recebendo " + salario + " em cheque entregue em mÃ£os");
 				break;
-			case "Depósito":
-				System.out.println("O empregado " + emps[i].nome + " está recebendo " + salario + " por depósito");
+			case "DepÃ³sito":
+				System.out.println("O empregado " + emps[i].nome + " estÃ¡ recebendo " + salario + " por depÃ³sito");
 				break;
-			case "depósito":
-				System.out.println("O empregado " + emps[i].nome + " está recebendo " + salario + " por depósito");
+			case "depÃ³sito":
+				System.out.println("O empregado " + emps[i].nome + " estÃ¡ recebendo " + salario + " por depÃ³sito");
 				break;
 			default:
 				System.out.println("Erro no sistema. Tente novamente depois");
@@ -382,15 +382,15 @@ public class Main{
 		int dia;
 		String aux;
 		
-		System.out.println("Qual a frequência do pagamento? (mensal, semanal)");
+		System.out.println("Qual a frequÃªncia do pagamento? (mensal, semanal)");
 		aux = entrada.nextLine();
 		if(aux.equals("mensal") || aux.equals("Mensal")){
-			System.out.println("Em que dia o funcionário deverá ser pago?");
+			System.out.println("Em que dia o funcionÃ¡rio deverÃ¡ ser pago?");
 			dia = entrada.nextInt();
 			agenda.d_mes[dia-1] = 1;
 		}
 		else{
-			System.out.println("Em que dia da semana o funcionário deverá ser pago? (1 - segunda, 2 - terça ...");
+			System.out.println("Em que dia da semana o funcionÃ¡rio deverÃ¡ ser pago? (1 - segunda, 2 - terÃ§a ...)");
 			dia = entrada.nextInt();
 			agenda.d_semana[dia-1] = 1;
 		}
@@ -462,7 +462,7 @@ public class Main{
 				break;
 				
 			default:
-				System.out.println("Não há nada a ser desfeito");
+				System.out.println("NÃ£o hÃ¡ nada a ser desfeito");
 		}
 	}
 	
@@ -509,7 +509,7 @@ public class Main{
 			break;
 			
 		default:
-			System.out.println("Não há nada a ser desfeito");
+			System.out.println("NÃ£o hÃ¡ nada a ser desfeito");
 		}
 	}
 	
@@ -523,16 +523,16 @@ public class Main{
 		emp_aux = new Empregado();
 		
 		do{
-			System.out.println("O que você deseja fazer?");
+			System.out.println("O que vocÃª deseja fazer?");
 			System.out.println("1. Adicionar um novo empregado");
 			System.out.println("2. Remover um empregado");
-			System.out.println("3. Lançar cartão de ponto");
-			System.out.println("4. Lançar resultado de vendas");
-			System.out.println("5. Alterar as informações de um empregado");
+			System.out.println("3. LanÃ§ar cartÃ£o de ponto");
+			System.out.println("4. LanÃ§ar resultado de vendas");
+			System.out.println("5. Alterar as informaÃ§Ãµes de um empregado");
 			System.out.println("6. Rodar folha de pagamento");
 			System.out.println("7. Criar uma nova agenda de pagamento");
 			System.out.println("8. Imprimir a atual agenda de pagamento");
-			System.out.println("9. Consultar o id de um funcionário");
+			System.out.println("9. Consultar o id de um funcionÃ¡rio");
 			System.out.println("10. Desfazer");
 			System.out.println("11. Refazer");
 						
@@ -585,7 +585,7 @@ public class Main{
 						System.out.println(id);
 					}
 					else{
-						System.out.println("Empregado não encontrado");
+						System.out.println("Empregado nÃ£o encontrado");
 					}
 					break;
 					
@@ -598,11 +598,11 @@ public class Main{
 					break;
 					
 				default:
-					System.out.println("Opção Inválida");
+					System.out.println("OpÃ§Ã£o InvÃ¡lida");
 			}
 			
-			System.out.println("Deseja fazer outra operação?");
-			System.out.println("1 - Sim/0 - Não");
+			System.out.println("Deseja fazer outra operaÃ§Ã£o?");
+			System.out.println("1 - Sim/0 - NÃ£o");
 			func = entrada.nextInt();
 			
 		} while(func != 0);
